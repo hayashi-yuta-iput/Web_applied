@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>敵のリスト</title>
+    <style>
+      .down {
+        color: #aaa;
+        text-decoration: line-through;
+      }
+      .battle-area{
+        display:flex;
+        align-items: center;
+        gap: 30px;
+      }
+      #clearMessage{
+        color: #e74c3c;
+        font-size:28px;
+        font-weight:bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>敵のリスト</h2>
+    <button id="attackBtn" onclick="attack()">攻撃（全員に3ダメージ）</button>
+    <div class="battle-area">
+        <ul id="enemyList"></ul>
+        <div id="clearMessage"></div>
+    </div>
+    
+
+    <script src="3-A_enemies.js"></script>
+  </body>
+</html>

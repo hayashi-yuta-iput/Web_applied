@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScriptの練習</title>
+  </head>
+  <body>
+      <p>ページ</p>
+    <button onclick="add();">足し算する</button>
+    <script>
+      function add() {
+        const a=Number(prompt("１つ目の数を入力してください"));
+        const b=Number(prompt("２つ目の数を入力してください"));
+        const answer =a+b;
+        console.log(`${a} + ${b} = ${answer}`);
+        alert(`答えは ${answer} です`);  
+      }
+    </script>
+  </body>
+</html>
