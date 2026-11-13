@@ -5,9 +5,9 @@ const ctx = canvas.getContext("2d");
 const CONFIG = {
   GRAVITY: 2000,
   JUMP_SPEED: 900,
-  MOVE_SPEED: 640,
+  MOVE_SPEED: 1500,
   MAX_JUMPS: 2,
-  FALL_GRAVITY_RATE: 2,
+  FALL_GRAVITY_RATE: 0.5,
 };
 
 const TARGET_HEIGHT = 64;   // 目印の線の高さ（床から64px＝キャラ2つ分）。ぶつからない
