@@ -6,7 +6,13 @@ const MOVE_SPEED = 240;
 const MAX_JUMPS = 2;          // 地面を離れてから跳べる回数（2段ジャンプ）
 const FALL_GRAVITY_RATE = 2;  // 落ちるときは、重力を何倍にするか
 
-const player = { x: 80, y: 20, w: 32, h: 32, vy: 0, isGrounded: false, jumpsLeft: MAX_JUMPS,state:"idle" };
+const player = { x: 80, y: 20, w: 32, h: 32, vx: 0, vy: 0, isGrounded: false, jumpsLeft: MAX_JUMPS, state: "idle", frameIndex: 0, frameTimer: 0 };
+
+//コマを並べた画像（一コマ32×32）
+const playerImg = new Image();
+playerImg.src="7-3_bird.png";
+const FRAME_SIZE =32;
+const FRAME_TIME = 0.12;
 const STATE_COLORS={idle:"#7ef5e1",run:"#6dd3ff",jump:"#ffd166",fall:"#ff9999"};
 const keys = {};
 document.addEventListener("keydown", (e) => {
@@ -59,14 +65,20 @@ function updatePlayer(dt) {
   player.y = player.y + player.vy * dt;
   collideWithFloor();
   player.state=decideState();
+
+  //コマ送り
+    // コマ送り（タイマーの形）：…
+  player.frameIndex = (player.frameIndex + 1) % 4;
 }
 
 // プレイヤーを描く（★ main.js の draw から呼ばれる）
 function drawPlayer() {
-  ctx.fillStyle = STATE_COLORS[player.state];
-  ctx.fillRect(player.x, player.y, player.w, player.h);
+  //画像から一コマを切り出して描く
+  const sx =player.frameIndex * FRAME_SIZE;
+  const sy =1*FRAME_SIZE;
+  ctx.drawImage(playerImg,sx,sy,FRAME_SIZE,FRAME_SIZE,player.x,player.y,player.w,player.h);
 
   ctx.fillStyle = "#e8eeff";
   ctx.font = "14px monospace";
-  ctx.fillText("vy = " + player.vy.toFixed(0) + "   jumpsLeft = " + player.jumpsLef+"state="+player.state, 10, 20);
+  ctx.fillText("vy = " + player.vy.toFixed(0) + "   jumpsLeft = " + player.jumpsLeft + "   state = " + player.state + "   frameIndex = " + player.frameIndex, 10, 20);
 }
